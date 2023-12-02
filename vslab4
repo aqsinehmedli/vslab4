@@ -1,0 +1,33 @@
+# Ədədi massiv yaratmaq
+massiv = [1, 3, -2, 4, 7, -5, 8, -6]
+
+# Ədədlərin yerinə yazılacaq faylın adı
+fayl_adı = "massiv.txt"
+
+# Faylı yaratmaq və ədədləri fayla yazmaq
+with open(fayl_adı, 'w') as f:
+    for ədəd in massiv:
+        f.write(str(ədəd) + '\n')
+
+# Birinci mənfi ədəddən əvvəlki elementləri yeni fayla yazmaq
+yeni_fayl_adı = "evvelki_elementler.txt"
+hasil_fayl_adı = "hasil.txt"
+
+with open(fayl_adı, 'r') as f:
+    with open(yeni_fayl_adı, 'w') as yeni_f:
+        with open(hasil_fayl_adı, 'w') as hasil_f:
+            birinci_menfi_index = -1
+            for i, line in enumerate(f):
+                ədəd = int(line.strip())
+                if ədəd < 0:
+                    birinci_menfi_index = i
+                    break
+
+            if birinci_menfi_index != -1:
+                for i in range(birinci_menfi_index):
+                    yeni_f.write(str(massiv[i]) + '\n')
+                    hasil_f.write(str(massiv[i]) + ' hasil: ' + str(massiv[i] * 2) + '\n')
+            else:
+                print("Massivdə mənfi ədəd tapılmadı.")
+
+print("Ədədlər uğurla fayllara yazıldı.")
